@@ -23,20 +23,16 @@ const SignUpForm = () => {
             alert("passwords do not match");
             return;
         }
-
         try {
             const { user } = await createAuthUserWithEmailAndPassword(email, password);
-
             await createUserDocumentFromAuth(user, { displayName });
-
             resetFormFields();
         } catch (error) {
-            if(error.code ==='auth/email-already-in-use'){
+            if (error.code === 'auth/email-already-in-use') {
                 alert('email already in use')
-            }else{
+            } else {
                 console.log(error)
             }
-            
         }
     };
 
